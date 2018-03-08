@@ -1,7 +1,10 @@
 <header class="header navbar" style="padding: 0; overflow: visible;">
 	<div class="container">
-		<h1 class="navbar-brand logo-name">
-			Time Tracker
+		<h1>
+			<a class="logo" href="{{ route('root') }}">
+				<svg viewbox="0 0 64 64" class="logo-icon"><use xlink:href="#logo_icon"></use></svg>
+				<span class="logo-name">Time Tracker</span>
+			</a>
 		</h1>
 
 		@guest

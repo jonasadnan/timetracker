@@ -15,6 +15,7 @@
 </head>
 <body>
     <div id="app">
+        @include('includes.svg')
         @include('layouts.navbar')
 
         <main class="py-4">
