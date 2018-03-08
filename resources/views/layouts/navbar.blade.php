@@ -15,19 +15,41 @@
 
 			@else
 				<ul class="nav">
-					<li class="nav-item tasks"><a class="nav-link" href="{{ route('tasks') }}">Tasks</a></li>
-					<li class="nav-item projects"><a class="nav-link" href="{{ route('projects') }}">Projects</a></li>
-					<li class="nav-item projects"><a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
-					<li class="nav-item reports"><a class="nav-link" href="{{ route('reports') }}">Reports</a></li>
+					<li class="nav-item tasks"><a class="nav-link" href="{{ route('tasks.index') }}">
+							<i class="fa fa-tasks"></i>
+							Tasks
+						</a>
+					</li>
+					<li class="nav-item projects"><a class="nav-link" href="{{ route('projects.index') }}">
+							<i class="fa fa-folder-open"></i>
+							Projects
+						</a>
+					</li>
+					<li class="nav-item projects"><a class="nav-link" href="{{ route('categories.index') }}">
+							<i class="fa fa-bookmark"></i>
+							Categories
+						</a>
+					</li>
+					<li class="nav-item reports"><a class="nav-link" href="{{ route('reports.index') }}">
+							<i class="fa fa-book"></i>
+							Reports
+						</a>
+					</li>
 					<li class="nav-item dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							<i class="fa fa-user"></i>
 							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>
 
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('users.index') }}">
+								<i class="fa fa-users"></i>
+								Users
+							</a>
 							<a class="dropdown-item" href="{{ route('logout') }}"
 							   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+								<i class="fa fa-sign-out-alt"></i>
 								{{ __('Logout') }}
 							</a>
 

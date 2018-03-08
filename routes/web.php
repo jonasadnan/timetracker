@@ -15,7 +15,29 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('root');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/tasks', 'TasksController@index')->name('tasks');
-Route::get('/projects','ProjectsController@index')->name('projects');
-Route::get('/categories','CategoriesController@index')->name('categories');
-Route::get('/reports','ReportsController@index')->name('reports');
+
+Route::prefix('tasks')->middleware('auth')->group(function () {
+    Route::get('/', 'TasksController@index')->name('tasks.index');
+});
+
+Route::prefix('projects')->middleware('auth')->group(function () {
+    Route::get('/','ProjectsController@index')->name('projects.index');
+});
+
+Route::prefix('categories')->middleware('auth')->group(function () {
+    Route::get('/','CategoriesController@index')->name('categories.index');
+});
+
+Route::prefix('reports')->middleware('auth')->group(function () {
+    Route::get('/','ReportsController@index')->name('reports.index');
+});
+
+Route::prefix('users')->middleware('auth')->group(function () {
+    Route::get('/', 'UsersController@index')->name('users.index');
+    Route::get('create', 'UsersController@create')->name('users.create');
+});
+
+
+
+
+

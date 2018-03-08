@@ -13574,6 +13574,33 @@ select {
 
 
 
+.container-wide {
+  margin: 0 auto;
+  max-width: 1500px;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #63517f;
+  border-color: #63517f;
+}
+
+.table .thead-dark th {
+  color: #f5f8fa;
+  background-color: #63517f !important;
+  border-color: #32383e;
+}
+
+.btn-purple {
+  color: #FFF;
+  background-color: #63517f;
+}
+
+.btn-purple:hover {
+  background-color: #4b3d60;
+}
+
 a:hover {
   text-decoration: none;
 }
