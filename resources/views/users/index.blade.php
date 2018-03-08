@@ -24,37 +24,41 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Created</th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead class="thead-dark">
                                 <tr>
-                                    <th scope="row">{{ $user->id }}</th>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at }}</td>
-                                    <td>
-                                        <div class="btn-group-justified">
-                                            <button class="btn btn-primary">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Created</th>
+                                    <th scope="col"></th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <th scope="row">{{ $user->id }}</th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->created_at }}</td>
+                                            <td>
+                                                <div class="btn-group-justified">
+                                                    <button class="btn btn-primary">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
