@@ -11,7 +11,7 @@
             <div class="actions-wrapper">
                 <ul class="actions">
                     <li class="actions-item">
-                        <a class="actions-link" href="task.php">
+                        <a class="actions-link" href="{{ route ('tasks.create') }}">
               <span class="actions-icon">
                 <svg viewbox="0 0 64 64"><use xlink:href="#task_icon"></use></svg>
               </span>
@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li class="actions-item">
-                        <a class="actions-link" href="category.php">
+                        <a class="actions-link" href="{{ route ('categories.index') }}">
               <span class="actions-icon">
                 <svg viewbox="0 0 64 64"><use xlink:href="#task_icon"></use></svg>
               </span>
@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="actions-item">
-                        <a class="actions-link" href="project.php">
+                        <a class="actions-link" href="{{ route ('projects.index') }}">
               <span class="actions-icon">
                 <svg viewbox="0 0 64 64"><use xlink:href="#project_icon"></use></svg>
               </span>
@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="actions-item">
-                        <a class="actions-link" href="reports.php">
+                        <a class="actions-link" href="{{ route ('reports.index') }}">
               <span class="actions-icon">
                 <svg viewbox="0 0 64 64"><use xlink:href="#report_icon"></use></svg>
               </span>

@@ -18,6 +18,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('tasks')->middleware('auth')->group(function () {
     Route::get('/', 'TasksController@index')->name('tasks.index');
+	Route::get('create', 'TasksController@create')->name('tasks.create');
+	Route::get('{task}/edit', 'TasksController@edit')->name('tasks.edit');
+	Route::post('store', 'TasksController@store')->name('tasks.store');
+	Route::post('{task}/update', 'TasksController@update')->name('tasks.update');
+	Route::post('{task}/delete', 'TasksController@destroy')->name('tasks.delete');
 });
 
 Route::prefix('projects')->middleware('auth')->group(function () {

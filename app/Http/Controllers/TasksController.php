@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -13,7 +15,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('tasks.index');
+    	$tasks = Task::all();
+
+
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -23,7 +28,8 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+    	$projects = Project::all();
+        return view('tasks.create', compact('projects'));
     }
 
     /**
@@ -34,7 +40,24 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$this->validate($request,[
+			'title' => 'required|min:3|max:32',
+			'date'  => 'required|date',
+			'time'  => 'required|integer',
+			'project_id' => 'required|integer'
+		]);
+
+    	$task = new Task;
+    	$task->fill([
+    		'title' => $request->title,
+			'date'  => $request->date,
+			'time'  => $request->time,
+			'project_id' => $request->project_id
+		]);
+
+    	$task->save();
+
+        return redirect(route('tasks.index'))->with('success', 'Task been created');
     }
 
     /**
@@ -54,9 +77,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Task $task)
+	{
+        $projects = Project::all();
+
+        return view('tasks.edit', compact('task', 'projects'));
+
     }
 
     /**
@@ -66,9 +92,25 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        //
+		$this->validate($request,[
+			'title' => 'required|min:3|max:32',
+			'date'  => 'required|date',
+			'time'  => 'required|integer',
+			'project_id' => 'required|integer'
+		]);
+
+		$task->fill([
+			'title' => $request->title,
+			'date'  => $request->date,
+			'time'  => $request->time,
+			'project_id' => $request->project_id
+		]);
+
+		$task->save();
+
+		return redirect(route('tasks.index'))->with('success', 'Task been updated');
     }
 
     /**
@@ -77,8 +119,9 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+		return redirect(route('tasks.index'))->with('success', 'Task been deleted');
     }
 }
