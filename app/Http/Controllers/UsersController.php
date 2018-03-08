@@ -39,7 +39,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
 
@@ -48,10 +48,9 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ])->save();
 
-        ]);
-
-        return redirect();
+        return redirect()->back()->with('success', 'User created.');
     }
 
     /**

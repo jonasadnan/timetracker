@@ -21,7 +21,9 @@
         @include('includes.svg')
         @include('layouts.navbar')
 
-        <main class="py-4">
+        <main>
+            @include('includes.errors')
+            @include('includes.flash')
             @yield('content')
         </main>
     </div>

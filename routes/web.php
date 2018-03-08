@@ -35,6 +35,7 @@ Route::prefix('reports')->middleware('auth')->group(function () {
 Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index')->name('users.index');
     Route::get('create', 'UsersController@create')->name('users.create');
+    Route::post('store', 'UsersController@store')->name('users.store');
 });
 
 
