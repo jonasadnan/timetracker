@@ -15,10 +15,10 @@
 
 			@else
 				<ul class="nav">
-					<li class="nav-item tasks"><a class="nav-link" href="task_list.php">Tasks</a></li>
-					<li class="nav-item projects"><a class="nav-link" href="project_list.php">Projects</a></li>
-					<li class="nav-item projects"><a class="nav-link" href="category_list.php">Categories</a></li>
-					<li class="nav-item reports"><a class="nav-link" href="reports.php">Reports</a></li>
+					<li class="nav-item tasks"><a class="nav-link" href="{{ route('tasks') }}">Tasks</a></li>
+					<li class="nav-item projects"><a class="nav-link" href="{{ route('projects') }}">Projects</a></li>
+					<li class="nav-item projects"><a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
+					<li class="nav-item reports"><a class="nav-link" href="{{ route('reports') }}">Reports</a></li>
 					<li class="nav-item dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 							{{ Auth::user()->name }} <span class="caret"></span>

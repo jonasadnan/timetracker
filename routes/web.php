@@ -15,3 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('root');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tasks', 'TasksController@index')->name('tasks');
+Route::get('/projects','ProjectsController@index')->name('projects');
+Route::get('/categories','CategoriesController@index')->name('categories');
+Route::get('/reports','ReportsController@index')->name('reports');
