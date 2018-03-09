@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,7 +14,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-		return view('categories.index');
+    	$categories = Category::all();
+
+		return view('categories.index', compact('categories'));
     }
 
     /**
@@ -23,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('categories.create', compact('categories'));
     }
 
     /**
@@ -34,7 +38,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+
+        	'name' => 'required|min:3|max:32'
+		]);
+
+        $category = new Category;
+
+        $category->fill([
+
+        	'name' => $request->name
+		])->save();
+
+        return redirect(route('categories.index'))->with('success','Category been created');
+
     }
 
     /**
@@ -54,21 +71,34 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+
+        return view('categories.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @param Category $category
+	 * @return \Illuminate\Http\Response
+	 * @internal param int $id
+	 */
+    public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+
+        	'name' => 'required|min:3|max:32'
+		]);
+
+        $category->fill([
+
+        	'name' => $request->name
+
+		])->save();
+
+        return redirect(route('categories.index'))->with('success','Category been updated');
     }
 
     /**
@@ -77,8 +107,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect(route('categories.index'))->with('success','Category been deleted');
     }
 }
