@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -70,9 +71,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -82,9 +83,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users,id,' . $user->id,
+            'password' => 'confirmed'
+        ]);
+
+        $user->fill([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => isset($request->password) ? Hash::make($request->password) : $user->getAuthPassword(),
+        ])->save();
+
+        return redirect()->back()->with('success', 'User saved.');
     }
 
     /**
@@ -93,8 +106,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted.');
     }
 }

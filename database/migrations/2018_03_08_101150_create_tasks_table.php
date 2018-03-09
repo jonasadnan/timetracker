@@ -15,10 +15,10 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->dateTime('date');
-            $table->integer('project_id');
-            $table->integer('time');
+            $table->string('title')->nullable();
+            $table->date('date')->nullable();
+            $table->integer('project_id')->nullable();
+            $table->integer('time')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

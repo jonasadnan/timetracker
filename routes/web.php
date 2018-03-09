@@ -40,7 +40,10 @@ Route::prefix('reports')->middleware('auth')->group(function () {
 Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index')->name('users.index');
     Route::get('create', 'UsersController@create')->name('users.create');
+    Route::get('{user}/edit', 'UsersController@edit')->name('users.edit');
     Route::post('store', 'UsersController@store')->name('users.store');
+    Route::post('{user}/update', 'UsersController@update')->name('users.update');
+    Route::post('{user}/delete', 'UsersController@destroy')->name('users.delete');
 });
 
 

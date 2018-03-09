@@ -45,12 +45,17 @@
                                             <td>{{ $user->created_at }}</td>
                                             <td>
                                                 <div class="btn-group-justified">
-                                                    <button class="btn btn-primary">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger">
-                                                        <i class="fa fa-trash-alt"></i>
-                                                    </button>
+                                                    <form class="d-inline-flex" method="GET" action="{{ route('users.edit', $user) }}">
+                                                        <button class="btn btn-primary">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form class="d-inline-flex" method="POST" action="{{ route('users.delete', $user) }}">
+                                                        {{ csrf_field() }}
+                                                        <button class="btn btn-danger">
+                                                            <i class="fa fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
