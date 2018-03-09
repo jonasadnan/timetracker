@@ -36,6 +36,11 @@ Route::prefix('projects')->middleware('auth')->group(function () {
 
 Route::prefix('categories')->middleware('auth')->group(function () {
     Route::get('/','CategoriesController@index')->name('categories.index');
+    Route::get('create','CategoriesController@create')->name('categories.create');
+    Route::post('store','CategoriesController@store')->name('categories.store');
+    Route::get('{category}/edit','CategoriesController@edit')->name('categories.edit');
+    Route::post('{category}/update', 'Categoriescontroller@update')->name('categories.update');
+    Route::post('{category}/delete','Categoriescontroller@destroy')->name('categories.delete');
 });
 
 Route::prefix('reports')->middleware('auth')->group(function () {
