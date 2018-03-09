@@ -71,13 +71,12 @@
 
                             <tr>
                                 <th class="project-total-label" colspan="3">Project Total</th>
-                                <th class="project-total-number">Project total hours?</th>
+                                <th class="project-total-number">{{ $projectTotal }}</th>
                             </tr>
                         @endforeach
-
                         <tr>
                             <th class='grand-total-label' colspan='3'>Grand Total</th>
-                            <th class='grand-total-number'> Grand Total Value </th>
+                            <th class='grand-total-number'>{{ $grandTotal }}</th>
                         </tr>
                     </table>
                 </div>

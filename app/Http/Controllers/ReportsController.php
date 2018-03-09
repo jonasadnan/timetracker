@@ -35,9 +35,13 @@ class ReportsController extends Controller
 
         $tasks = $tasks->get();
 
+        // TODO: Find grand total for all projects
+        $grandTotal = 0;
 
+        // TODO: Find total time for each project
+        $projectTotal = 0;
 
-		return view('reports.index', compact('tasks', 'projects', 'categories'));
+		return view('reports.index', compact('tasks', 'projectTotal', 'grandTotal', 'projects', 'categories'));
     }
 
     /**
