@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Project;
 use Illuminate\Http\Request;
+
 
 class ProjectsController extends Controller
 {
@@ -13,7 +16,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-		return view('projects.index');
+    	$projects = Project::all();
+		return view('projects.index', compact('projects'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('projects.create', compact('categories'));
     }
 
     /**
@@ -34,7 +39,22 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+    	$this->validate($request,[
+			'title'       => 'required|min:3|max:32',
+			'category_id' => 'required|integer'
+		]);
+
+    	$project = new Project;
+
+    	$project->fill([
+    		'title' => $request->title,
+			'category_id' => $request->category_id
+		]);
+
+    	$project->save();
+
+    	return redirect(route('projects.index'))->with('success', 'Project been created');
     }
 
     /**
@@ -54,9 +74,10 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+    	$categories = Category::all();
+    	return view('projects.edit', compact('project', 'categories'));
     }
 
     /**
@@ -66,9 +87,21 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Project $project)
     {
-        //
+        $this->validate($request,[
+
+        	'title' => 'required|min:3|max:32',
+			'category_id' => 'required|integer'
+		]);
+
+        $project->fill([
+
+        	'title' => $request->title,
+			'category_id' => $request->category_id
+		])->save();
+
+        return redirect(route('projects.index'))->with('success', 'Project been updated');
     }
 
     /**
@@ -77,8 +110,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect(route ('projects.index'))->with('success','Project been deleted');
     }
 }

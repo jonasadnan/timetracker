@@ -27,6 +27,11 @@ Route::prefix('tasks')->middleware('auth')->group(function () {
 
 Route::prefix('projects')->middleware('auth')->group(function () {
     Route::get('/','ProjectsController@index')->name('projects.index');
+    Route::get('create','ProjectsController@create')->name('projects.create');
+    Route::post('store','ProjectsController@store')->name('projects.store');
+    Route::get('{project}/edit','ProjectsController@edit')->name('projects.edit');
+    Route::post('{project}/update}','ProjectsController@update')->name('projects.update');
+    Route::post('{project}/delete', 'ProjectsController@destroy')->name('projects.delete');
 });
 
 Route::prefix('categories')->middleware('auth')->group(function () {

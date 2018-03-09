@@ -9,6 +9,12 @@ class Project extends Model
 {
     use SoftDeletes;
 
+    protected $fillable =[
+
+    	'title', 'category_id',
+	];
+
     protected $table = 'projects';
     protected $dates = ['deleted_at'];
+
 }

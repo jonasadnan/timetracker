@@ -106,9 +106,7 @@ class TasksController extends Controller
 			'date'  => $request->date,
 			'time'  => $request->time,
 			'project_id' => $request->project_id
-		]);
-
-		$task->save();
+		])->save();
 
 		return redirect(route('tasks.index'))->with('success', 'Task been updated');
     }
