@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -50,7 +51,7 @@ class TasksController extends Controller
     	$task = new Task;
     	$task->fill([
     		'title' => $request->title,
-			'date'  => $request->date,
+			'date'  => Carbon::parse($request->date)->toDateString(),
 			'time'  => $request->time,
 			'project_id' => $request->project_id
 		]);
@@ -103,7 +104,7 @@ class TasksController extends Controller
 
 		$task->fill([
 			'title' => $request->title,
-			'date'  => $request->date,
+			'date'  => Carbon::parse($request->date)->toDateString(),
 			'time'  => $request->time,
 			'project_id' => $request->project_id
 		])->save();

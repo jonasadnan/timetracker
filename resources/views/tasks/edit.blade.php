@@ -31,7 +31,7 @@
 						</tr>
 						<tr>
 							<th><label for="date">Date<span class="required">*</span></label></th>
-							<td><input type="text" id="date" name="date" value="{{ $task->date }}" placeholder="dd/mm/yyyy" /></td>
+							<td><input type="date" id="date" name="date" value="{{ $task->date }}" placeholder="dd/mm/yyyy" /></td>
 						</tr>
 						<tr>
 							<th><label for="time">Time<span class="required">*</span></label></th>
